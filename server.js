@@ -50,6 +50,43 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //localhost:3000
 app.get('/' , (req, res) => {
   res.send('Hello World!');
+  console.log(`this is the index route`);
+});
+
+// new
+app.get('/new', (req, res) => {
+  res.send(`new route`);
+  console.log(`this is the new route`);
+});
+
+//create
+app.post('/', (req, res) => {
+      res.send(`create route`);
+      console.log(`this is the create route`);
+});
+
+// update
+app.put('/:id', (req, res) => {
+      res.send(`update route`);
+      console.log(`this is the update route`);
+});
+
+// edit
+app.get('/:id/edit', (req, res) => {
+        res.send(`edit route`);
+        console.log(`this is the edit route`);
+});
+
+// show
+app.get('/:id', (req, res, next) => {
+      res.send(`show route`);
+      console.log(`this is the show route`);
+});
+
+// delete
+app.delete('/:id', (req, res) => {
+  res.send(`delete route`);
+  console.log(`this is the delete route`);
 });
 
 //___________________
