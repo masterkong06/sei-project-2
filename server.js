@@ -55,8 +55,9 @@ app.get('/' , (req, res) => {
 
 // new
 app.get('/new', (req, res) => {
-  res.send(`new route`);
-  console.log(`this is the new route`);
+  // res.send(`new route`);
+  res.render('new.ejs');
+  // console.log(`this is the new route`);
 });
 
 //create
