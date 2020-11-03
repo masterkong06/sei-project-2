@@ -14,28 +14,25 @@
     <div class="container">
         <h1>This is the Show page</h1>
         <!--Bootstrap Code Snippet: https://hackerthemes.com/bootstrap-cheatsheet/#card-->
-        <% for (let i=0; i < data.length; i++) { %>
         <div class="card">
-            <img class="card-img-top"
-                src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6408/6408385_sd.jpg;maxHeight=1000;maxWidth=1000"
-                alt="Card image cap">
+            <img class="card-img-top" src="<%=data.img%>" alt="Card image cap">
             <div class="card-body">
-                <h4 class="card-title"><%=data[i].name %></h4>
-                <p class="card-text">Purchase Price: <%=data[i].price %></p>
-                <p class="card-text">Category: <%=data[i].category %></p>
-                <p class="card-text">Make: <%=data[i].make %></p>
-                <p class="card-text">Model: <%=data[i].model %></p>
-                <p class="card-text">Barcode/SN <%=data[i].item_id %></p>
-                <p class="card-text">Location: <%=data[i].location %></p>
-                <p class="card-text">Number of Units: <%=data[i].units %></p>
-                <p class="card-text">Insured: <%=data[i].insured %></p>
-                <a href="/<%=data[i].id  %>/edit" class="btn btn-primary">Edit</a>
-                <form action="/<%=data[i].id  %>?_method=DELETE" method="POST">
-                        <input type="submit" value="DELETE">
-                    </form>
+                <h4 class="card-title"><%=data.name %></h4>
+                <p class="card-text">Purchase Price: <%=data.price %></p>
+                <p class="card-text">Category: <%=data.category %></p>
+                <p class="card-text">Make: <%=data.make %></p>
+                <p class="card-text">Model: <%=data.model %></p>
+                <p class="card-text">Barcode/SN <%=data.item_id %></p>
+                <p class="card-text">Location: <%=data.location %></p>
+                <p class="card-text">Number of Units: <%=data.units %></p>
+                <p class="card-text">Insured: <%=data.insured %></p>
+                <a href="/" class="btn btn-primary">Back</a>
+                <a href="/<%=data.id  %>/edit" class="btn btn-primary">Edit</a>
+                <form action="/<%=data.id  %>?_method=DELETE" method="POST">
+                    <input type="submit" value="Delete">
+                </form>
             </div>
         </div>
-        <% } %>
         <!--End Bootstrap Code Snippet-->
     </div>
 

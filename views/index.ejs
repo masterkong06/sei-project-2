@@ -12,13 +12,14 @@
 
 <body>
     <div class="container">
+        <nav>
+            <a href="/new">New Item</a>
+        </nav>
         <h1>This is the Index page</h1>
         <!--Bootstrap Code Snippet: https://hackerthemes.com/bootstrap-cheatsheet/#card-->
         <% for (let i=0; i < data.length; i++) { %>
         <div class="card">
-            <img class="card-img-top"
-                src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6408/6408385_sd.jpg;maxHeight=1000;maxWidth=1000"
-                alt="Card image cap">
+            <img class="card-img-top" src="<%=data[i].img%>" alt="Card image cap">
             <div class="card-body">
                 <h4 class="card-title"><%=data[i].name %></h4>
                 <p class="card-text">Purchase Price: <%=data[i].price %></p>
