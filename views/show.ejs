@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Show Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>This is the Show page</h1>
+        <!--Bootstrap Code Snippet: https://hackerthemes.com/bootstrap-cheatsheet/#card-->
+        <% for (let i=0; i < data.length; i++) { %>
+        <div class="card">
+            <img class="card-img-top"
+                src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6408/6408385_sd.jpg;maxHeight=1000;maxWidth=1000"
+                alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title"><%=data[i].name %></h4>
+                <p class="card-text">Purchase Price: <%=data[i].price %></p>
+                <p class="card-text">Category: <%=data[i].category %></p>
+                <p class="card-text">Make: <%=data[i].make %></p>
+                <p class="card-text">Model: <%=data[i].model %></p>
+                <p class="card-text">Barcode/SN <%=data[i].item_id %></p>
+                <p class="card-text">Location: <%=data[i].location %></p>
+                <p class="card-text">Number of Units: <%=data[i].units %></p>
+                <p class="card-text">Insured: <%=data[i].insured %></p>
+                <a href="/<%=data[i].id  %>/edit" class="btn btn-primary">Edit</a>
+                <form action="/<%=data[i].id  %>?_method=DELETE" method="POST">
+                        <input type="submit" value="DELETE">
+                    </form>
+            </div>
+        </div>
+        <% } %>
+        <!--End Bootstrap Code Snippet-->
+    </div>
+
+
+</body>
+
+</html>
