@@ -4,11 +4,17 @@ const app = express();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const itemsController = require('./controllers/items.js');
-// app.use('/',itemsController); WOULD I NEED TO TELL THE MIDDLEWARE TO RUN WHEN IT HITS THE INDEX?
+require('dotenv').config(); // gives server access to environment variables in .env file
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+const userController = require('./controllers/users_controller.js');
+
 
 
 //Port
-const PORT = 3000;
+const PORT = process.env.PORT;
+const mongodbURI = process.env.MONGODBURI;
+// const PORT = 3000;
 
 
 //MIDDLEWARE
@@ -19,49 +25,29 @@ app.use(express.static('public')); //use public folder for static assets
 
 
 //mongoose
-mongoose.connect('mongodb://localhost:27017/project2', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(mongodbURI, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.connection.once('open', () => {
   console.log('connected to mongo');
 });
 
 app.use(itemsController);
 
-// const Item = require('./models/items.js'); //no longer needed. moved to controllers folder
+app.use(
+  session({
+    secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
+    resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
+    saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+  })
+);
 
+app.use('/users', userController);
 
-// const db = mongoose.connection;
-
-// mongoose.connect(mongoURI);
-
-// Deprecation warning
-// mongoose.connect(mongoURI, {
-//   useFindAndModify: false,
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// }, () => {
-//   console.log('the connection with mongod is established');
-// });
-
-
-
+const db = mongoose.connection;
 
 // Error / success
-// db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
-// db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
-// db.on('disconnected', () => console.log('mongo disconnected'));
-// db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
-// db.on('connected', () => console.log('mongo connected: ', mongoURI));
-// db.on('disconnected', () => console.log('mongo disconnected'));
-
-
-
-// open the connection to mongo
-// db.on('open', () => {});
-
-
-
-
-
+db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
+db.on('connected', () => console.log('mongo connected: ', mongodbURI));
+db.on('disconnected', () => console.log('mongo disconnected'));
 
 
 

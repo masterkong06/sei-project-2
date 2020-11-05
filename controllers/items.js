@@ -90,13 +90,9 @@ router.post('/', (req, res) => {
   } else {
     req.body.insured = false;
   }
-
   Item.create(req.body, (error, createdItem) => {
-    res.send(createdItem);
-    // console.log(req.body, createdItem);
+    res.redirect('/');
   });
-  // res.redirect('/');
-
 });
 
 
@@ -112,7 +108,9 @@ router.get('/:id/edit', (req, res) => {
 
 // update
 router.put('/:id', (req, res) => {
-  Item.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedItem) => {
+  Item.findByIdAndUpdate(req.params.id, req.body, {
+    new: true
+  }, (err, updatedItem) => {
     res.redirect('/');
   });
 });
@@ -135,4 +133,4 @@ router.delete('/:id', (req, res) => {
 });
 
 
-  module.exports = router;
+module.exports = router;
