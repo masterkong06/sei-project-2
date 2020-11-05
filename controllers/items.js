@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Item = require('./models/items.js');
+const Item = require('../models/items.js');
 
-module.exports = router;
+
 
 // Routes
 
@@ -48,6 +48,7 @@ router.get('/', (req, res) => {
   // edit
   router.get('/:id/edit', (req, res) => {
     Item.findById(req.params.id, (err, foundItem) => {
+      // console.log(foundItem);
       res.render('edit.ejs', {
         data: foundItem
       });
@@ -56,7 +57,7 @@ router.get('/', (req, res) => {
   
   //seed
   router.get('/seed', (req, res) => {
-    Items.create([{
+    Item.create([{
         name: 'Laptop',
         description: 'Performance meets versatility. From intensive video and graphics files to high-octane gaming, the most powerful Surface laptop yet combines speed, graphics, and long battery life with the versatility of a laptop, tablet, and portable studio. Tackle your biggest demands with quadcore powered 10th Gen Intel Core processors, blazing NVIDIA graphics, and high-resolution PixelSense Display designed for Surface Pen and touch.',
         img: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6408/6408385_sd.jpg;maxHeight=1000;maxWidth=1000',
@@ -118,6 +119,7 @@ router.get('/', (req, res) => {
   // show
   router.get('/:id', (req, res) => {
     Item.findById(req.params.id, (error, foundItem) => {
+      console.log(req.params.id);
       res.render('show.ejs', {
         data: foundItem
       });
@@ -130,3 +132,7 @@ router.get('/', (req, res) => {
       res.redirect('/');
     });
   });
+
+
+
+  module.exports = router;
