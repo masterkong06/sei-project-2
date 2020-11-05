@@ -17,14 +17,15 @@ app.use(express.urlencoded({extended: true})); // populates req.body with parsed
 app.use(methodOverride('_method')); //use method override to allow POST, PUT and DELETE from a form
 app.use(express.static('public')); //use public folder for static assets
 
-const Item = require('./models/items.js');
-
 
 //mongoose
 mongoose.connect('mongodb://localhost:27017/project2', {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.connection.once('open', () => {
   console.log('connected to mongo');
 });
+
+const Item = require('./models/items.js');
+
 
 // const db = mongoose.connection;
 
@@ -108,7 +109,7 @@ app.get('/:id/edit', (req, res) => {
 
 //seed
 app.get('/seed', (req, res) => {
-  Items.create([{
+  Item.create([{
       name: 'Laptop',
       description: 'Performance meets versatility. From intensive video and graphics files to high-octane gaming, the most powerful Surface laptop yet combines speed, graphics, and long battery life with the versatility of a laptop, tablet, and portable studio. Tackle your biggest demands with quadcore powered 10th Gen Intel Core processors, blazing NVIDIA graphics, and high-resolution PixelSense Display designed for Surface Pen and touch.',
       img: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6408/6408385_sd.jpg;maxHeight=1000;maxWidth=1000',
