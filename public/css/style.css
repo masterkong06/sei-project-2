@@ -1,0 +1,19 @@
+body {
+    background-color: aqua;
+}
+
+#card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    max-width: 250px;
+    margin-bottom: 30px;
+}
+
+.desc {
+    height: 100px;
+    overflow: hidden;
+}
