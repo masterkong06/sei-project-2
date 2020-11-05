@@ -26,7 +26,12 @@
                 <p class="card-text">Barcode/SN <%=data.item_id %></p>
                 <p class="card-text">Location: <%=data.location %></p>
                 <p class="card-text">Number of Units: <%=data.units %></p>
-                <p class="card-text">Insured: <%=data.insured %></p>
+                <p class="card-text">Insured: <% if (data.insured === true) { %>
+                    Yes                       
+                <% } else if (data.insured === false) { %>
+                    No
+                <% } %>                    
+                 </p>
                 <a href="/" class="btn btn-primary">Back</a>
                 <a href="/<%=data.id  %>/edit" class="btn btn-primary">Edit</a>
                 <form action="/<%=data.id  %>?_method=DELETE" method="POST">

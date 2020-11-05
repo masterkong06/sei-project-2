@@ -68,44 +68,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// new
-app.get('/new', (req, res) => {
-  // res.send(`new route`);
-  res.render('new.ejs');
-  // console.log(`this is the new route`);
-});
-
-//create
-app.post('/', (req, res) => {
-  if (req.body.insured === 'on') {
-    req.body.insured = true;
-  } else {
-    req.body.insured = false;
-  }
-
-  Item.create(req.body, (error, createdItem) => {
-    res.send(createdItem);
-    // console.log(req.body, createdItem);
-  });
-  // res.redirect('/');
-
-});
-
-// update
-app.put('/:id', (req, res) => {
-  Item.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedModel) => {
-    res.redirect('/');
-  });
-});
-
-// edit
-app.get('/:id/edit', (req, res) => {
-  Item.findById(req.params.id, (err, foundItem) => {
-    res.render('edit.ejs', {
-      data: foundItem
-    });
-  });
-});
 
 //seed
 app.get('/seed', (req, res) => {
@@ -167,6 +129,47 @@ app.get('/seed', (req, res) => {
 });
 
 
+// new
+app.get('/new', (req, res) => {
+  // res.send(`new route`);
+  res.render('new.ejs');
+  // console.log(`this is the new route`);
+});
+
+//create
+app.post('/', (req, res) => {
+  if (req.body.insured === 'on') {
+    req.body.insured = true;
+  } else {
+    req.body.insured = false;
+  }
+
+  Item.create(req.body, (error, createdItem) => {
+    res.send(createdItem);
+    // console.log(req.body, createdItem);
+  });
+  // res.redirect('/');
+
+});
+
+
+
+// edit
+app.get('/:id/edit', (req, res) => {
+  Item.findById(req.params.id, (err, foundItem) => {
+    res.render('edit.ejs', {
+      data: foundItem
+    });
+  });
+});
+
+// update
+app.put('/:id', (req, res) => {
+  Item.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedItem) => {
+    res.redirect('/');
+  });
+});
+
 
 // show
 app.get('/:id', (req, res) => {
@@ -179,7 +182,7 @@ app.get('/:id', (req, res) => {
 
 // delete
 app.delete('/:id', (req, res) => {
-  Item.findByIdAndRemove(req.params.id, (err, data) => {
+  Item.findByIdAndRemove(req.params.id, (err, foundItem) => {
     res.redirect('/');
   });
 });
