@@ -1,5 +1,5 @@
 body {
-    color: #fff;
+    color: #000;
 
 }
 
@@ -64,6 +64,13 @@ body {
 .show-btn{
     margin-right: 15px;
     width: 80px;
+}
+
+.show-btn a {
+    color: #fff;
+}
+.show-btn a:hover {
+    text-decoration: none;
 }
 
 .view-btn a {
@@ -177,3 +184,25 @@ h5.card-title {
 }
 
 /* FORMS */
+
+form{
+    width: 600px;
+    margin: auto;
+}
+
+#new-item-form {
+    /* width: 60%; */
+    /* margin: 0 auto; */
+}
+
+label {
+    /* margin-right: 20px; */
+}
+
+.form-group{
+    /* margin-bottom: 20px !important; */
+}
+
+.btn-new-form{
+    display: block;
+}

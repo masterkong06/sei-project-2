@@ -3,7 +3,7 @@
 A CRUD application for keeping your home, office or business organized.
 
 # Technology Used
-HTML, CSS, Javascript, Git, Github, Node.js, Express.js, MongoDB
+Node.js, Express.js, MongoDB, HTML, CSS, Javascript, Git, Github
 
 ## Approach to Development
 - A basic wireframe was created to visualize the general layout of the application.
