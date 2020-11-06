@@ -3,20 +3,20 @@
 
 <head>
     <%- include ('./partials/head.ejs') %>
-    <title>Show Page</title>
+    <title>View Item</title>
 </head>
 
 <body>
     <%- include ('./partials/jumbotron.ejs') %>
-    <div class="container">
-        <h1>This is the Show page</h1>
+    <div class="container show-container">
+        <h1 class="card-title"><%=data.name %></h1>
         <!--Bootstrap Code Snippet: https://hackerthemes.com/bootstrap-cheatsheet/#card-->
-        <div class="card">
-            <img class="card-img-top" src="<%=data.img%>" alt="Card image cap"> 
-            <div class="card-body">
-                <h4 class="card-title"><%=data.name %></h4>
+            <div class="card-body show-card-body">
+                <div class="show-img-spacer">
+                    <img class="card-img-top img-thumbnail" src="<%=data.img%>" alt="Card image cap">
+                </div>
                 <p class="card-text">Description: <%=data.description %></p>
-                <p class="card-text">Purchase Price: <%=data.price %></p>
+                <p class="card-text">Purchase Price: $<%=data.price %></p>
                 <p class="card-text">Category: <%=data.category %></p>
                 <p class="card-text">Make: <%=data.make %></p>
                 <p class="card-text">Model: <%=data.model %></p>
@@ -24,17 +24,18 @@
                 <p class="card-text">Location: <%=data.location %></p>
                 <p class="card-text">Number of Units: <%=data.units %></p>
                 <p class="card-text">Insured: <% if (data.insured === true) { %>
-                    Yes                       
-                <% } else if (data.insured === false) { %>
+                    Yes
+                    <% } else if (data.insured === false) { %>
                     No
-                <% } %>                    
-                 </p>
-                <a href="/" class="btn btn-primary">Back</a>
-                <a href="/<%=data.id  %>/edit" class="btn btn-primary">Edit</a>
-                <form action="/<%=data.id  %>?_method=DELETE" method="POST">
-                    <input type="submit" value="Delete">
-                </form>
-            </div>
+                    <% } %>
+                </p>
+                <div class="form-buttons">
+                    <a href="/" class="show-btn btn-primary">Back</a>
+                    <a href="/<%=data.id  %>/edit" class="show-btn btn-primary">Edit</a>
+                    <form action="/<%=data.id  %>?_method=DELETE" method="POST">
+                        <input type="submit" value="Delete" class="show-btn link-btn">
+                    </form>
+                </div>
         </div>
         <!--End Bootstrap Code Snippet-->
     </div>

@@ -19,14 +19,14 @@
        <div id="card-container">
             <!--Bootstrap Code Snippet: https://hackerthemes.com/bootstrap-cheatsheet/#card-->
             <% for (let i=0; i < data.length; i++) { %>
-            <div class="card white px-4 pb-4 pt-3-5">
-                <img class="card-img-top" src="<%=data[i].img%>" alt="Card image cap">
+            <div class="card shadow" style="background-color: steelblue;">
+                <div class="img-spacer"><img class="card-img-top img-fluid" src="<%=data[i].img%>" alt="Card image cap"></div>
                 <div class="card-body">
                     <h5 class="card-title"><%=data[i].name %></h5>
                     <p class="card-text">Purchase Price: $<%=data[i].price %></p>
                     <p class="card-text desc">Description: <%=data[i].description %></p>
-                    <a href="/<%=data[i].id %>" class="btn btn-primary">View <%=data[i].name %> </a>
                 </div>
+                <div class="view-btn btn btn-primary"><a href="/<%=data[i].id %>" class="">View <%=data[i].name %></a></div>
             </div>
             <% } %>
             <!--End Bootstrap Code Snippet-->
