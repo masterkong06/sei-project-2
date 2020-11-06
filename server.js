@@ -27,15 +27,13 @@ app.use(express.static('public')); //use public folder for static assets
 
 
 //mongoose
-mongoose.connect(mongodbURI, {useNewUrlParser: true, useUnifiedTopology: true, 'useCreateIndex': true});
+mongoose.connect(mongodbURI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 mongoose.connection.once('open', () => {
   console.log('connected to mongo');
 });
 
-app.use(itemsController);
+app.use('/', itemsController);
 app.use('/users', userController);
-
-app.use('/sessions', sessionsController);
 app.use(
   session({
     secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
@@ -43,6 +41,7 @@ app.use(
     saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
   })
 );
+app.use('/sessions', sessionsController);
 
 const db = mongoose.connection;
 

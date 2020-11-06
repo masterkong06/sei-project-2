@@ -3,7 +3,7 @@
 
 <head>
     <%- include ('./partials/head.ejs') %>
-    <title>Index Page</title>
+    <title>Users Index Page</title>
 </head>
 
 <body>
@@ -12,20 +12,18 @@
             <a href="/new">New Item</a>
         </nav>
         <h1>This is the Users index page</h1>
-       <div id="card-container">
-            <!--Bootstrap Code Snippet: https://hackerthemes.com/bootstrap-cheatsheet/#card-->
-            <% for (let i=0; i < data.length; i++) { %>
-            <div class="card">
-                <img class="card-img-top" src="<%=data[i].img%>" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title"><%=data[i].name %></h4>
-                    <p class="card-text">Purchase Price: $<%=data[i].price %></p>
-                    <p class="card-text desc">Description: <%=data[i].description %></p>
-                    <a href="/<%=data[i].id %>" class="btn btn-primary">View <%=data[i].name %> </a>
+       <div>
+            <% if (currentUser) { %>
+                <p>Welcome <%= currentUser.username %></p>
+                <div>
+                    <form action="/sessions?_method=DELETE" method="POST">
+                        <input type="submit" value="Log Out" class="btn-small red" />
+                      </form>
                 </div>
-            </div>
-            <% } %>
-            <!--End Bootstrap Code Snippet-->
+                <% } else { %>
+                    <p><a href="/users/new">Sign Up</a></p>
+                    <p><a href="/sessions/new">Log In</a></p>
+                <% } %> 
        </div>
     </div>
 

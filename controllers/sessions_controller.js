@@ -1,14 +1,15 @@
 //code from BuildMe3.md
 const bcrypt = require('bcrypt');
 const express = require('express');
-const sessions = express.Router();
+const router = express.Router();
 const User = require('../models/users.js');
 
-sessions.get('/new', (req, res) => {
-  res.render('sessions/new.ejs', { currentUser: req.session.currentUser });
+router.get('/sessions/new', (req, res) => {
+  // res.render('sessions/new.ejs', { currentUser: req.session.currentUser });
+  res.render('sessions/new.ejs');
 });
 
-sessions.post('/', (req, res) => {
+router.post('/sessions', (req, res) => {
 
   User.findOne({ username: req.body.username }, (err, foundUser) => {
     if (err) {
@@ -27,13 +28,13 @@ sessions.post('/', (req, res) => {
   });
 });
 
-sessions.delete('/', (req, res) => {
+router.delete('/sessions', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');
   });
 });
 
-module.exports = sessions;
+module.exports = router;
 
 
 
