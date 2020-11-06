@@ -2,7 +2,7 @@
   "name": "sei-project-2",
   "version": "1.0.0",
   "engines": {
-    "node": "10.11.0"
+    "node": "10.19.0"
   },
   "description": "My first express app",
   "main": "server.js",

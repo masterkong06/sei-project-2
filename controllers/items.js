@@ -130,12 +130,12 @@ router.put('/:id', (req, res) => {
 
 // show
 router.get('/:id', (req, res) => {
-    Item.findById(req.params.id, (error, foundItem) => {
-      res.render('show.ejs', {
-        data: foundItem,
-        // currentUser: req.session.currentUser
-      });
+  Item.findById(req.params.id, (error, foundItem) => {
+    res.render('show.ejs', {
+      data: foundItem,
+      // currentUser: req.session.currentUser
     });
+  });
 });
 
 // delete
