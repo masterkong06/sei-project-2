@@ -9,6 +9,8 @@ const sessionsController = require('./controllers/sessions_controller.js');
 require('dotenv').config(); // gives server access to environment variables in .env file
 const session = require('express-session');
 const bcrypt = require('bcrypt');
+const favicon = require('serve-favicon');
+const path = require('path');
 
 
 
@@ -42,6 +44,7 @@ app.use(
   })
 );
 app.use('/sessions', sessionsController);
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))); // Favicon error
 
 const db = mongoose.connection;
 
@@ -55,3 +58,6 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 //Listener
 
 app.listen(PORT, () => console.log('Listening on port:', PORT));
+
+//RESOURCES
+// favicon error https://expressjs.com/en/resources/middleware/serve-favicon.html
