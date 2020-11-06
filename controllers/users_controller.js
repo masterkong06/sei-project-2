@@ -15,9 +15,11 @@ router.get('/', (req, res) => {
 });
 
 
+
+
 // new
 router.get('/new', (req, res) => {
-  res.render('users/new.ejs', {currentUser: req.session.currentUser});
+  res.render('users/new.ejs');
   // console.log(res);
   // res.send('new user page');
 });
@@ -28,7 +30,7 @@ router.post('/', (req, res) => {
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
   User.create(req.body, (err, createdUser) => {
     console.log('user is created', createdUser);
-    res.redirect('users/index.ejs');
+    res.redirect('/');
   });
 });
 

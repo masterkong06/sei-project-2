@@ -3,6 +3,16 @@ const router = express.Router();
 const Item = require('../models/items.js');
 
 
+//authentication middleware
+const isAuthenticated = (req, res, next) => {
+  if (req.session.currentUser) {
+    return next();
+  } else {
+    res.redirect('/sessions/new');
+  }
+};
+
+
 
 // Routes
 
@@ -13,6 +23,7 @@ router.get('/', (req, res) => {
       data: allItems,
       currentUser: req.session.currentUser
     });
+    console.log(req.session.currentUser);
   });
 });
 
@@ -80,7 +91,9 @@ router.get('/seed', (req, res) => {
 // new
 router.get('/new', (req, res) => {
   // res.send(`new route`);
-  res.render('new.ejs', {currentUser: req.session.currentUser});
+  res.render('new.ejs', {
+    currentUser: req.session.currentUser
+  });
   // console.log(`this is the new route`);
 });
 
@@ -108,7 +121,7 @@ router.get('/:id/edit', (req, res) => {
 });
 
 // update
-router.put('/:id', (req, res) => {
+router.put('/:id', isAuthenticated, (req, res) => {
   Item.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     currentUser: req.session.currentUser
@@ -120,16 +133,20 @@ router.put('/:id', (req, res) => {
 
 // show
 router.get('/:id', (req, res) => {
-  Item.findById(req.params.id, (error, foundItem) => {
-    res.render('show.ejs', {
-      data: foundItem,
-      currentUser: req.session.currentUser
+  if (req.session.currentUser) {
+    Item.findById(req.params.id, (error, foundItem) => {
+      res.render('show.ejs', {
+        data: foundItem,
+        currentUser: req.session.currentUser
+      });
     });
-  });
+  } else {
+    res.redirect('/sessions/new');
+  }
 });
 
 // delete
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isAuthenticated, (req, res) => {
   Item.findByIdAndRemove(req.params.id, (err, foundItem) => {
     res.redirect('/');
   });

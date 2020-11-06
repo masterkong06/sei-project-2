@@ -27,7 +27,7 @@ app.use(express.static('public')); //use public folder for static assets
 
 
 //mongoose
-mongoose.connect(mongodbURI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(mongodbURI, {useNewUrlParser: true, useUnifiedTopology: true, 'useCreateIndex': true});
 mongoose.connection.once('open', () => {
   console.log('connected to mongo');
 });
@@ -43,8 +43,6 @@ app.use(
     saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
   })
 );
-
-
 
 const db = mongoose.connection;
 
