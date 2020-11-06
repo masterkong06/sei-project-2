@@ -10,7 +10,6 @@ const User = require('../models/users.js');
 router.get('/', (req, res) => {
   Item.find({}, (error, allItems) => {
     res.render('users/index.ejs', {
-      data: allItems
     });
   });
 });
@@ -18,8 +17,8 @@ router.get('/', (req, res) => {
 
 // new
 router.get('/new', (req, res) => {
-  res.render('users/new.ejs');
-  console.log(res);
+  res.render('users/new.ejs', {currentUser: req.session.currentUser});
+  // console.log(res);
   // res.send('new user page');
 });
 

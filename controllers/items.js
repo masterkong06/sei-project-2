@@ -10,7 +10,8 @@ const Item = require('../models/items.js');
 router.get('/', (req, res) => {
   Item.find({}, (error, allItems) => {
     res.render('index.ejs', {
-      data: allItems
+      data: allItems,
+      currentUser: req.session.currentUser
     });
   });
 });
@@ -79,7 +80,7 @@ router.get('/seed', (req, res) => {
 // new
 router.get('/new', (req, res) => {
   // res.send(`new route`);
-  res.render('new.ejs');
+  res.render('new.ejs', {currentUser: req.session.currentUser});
   // console.log(`this is the new route`);
 });
 
@@ -109,7 +110,8 @@ router.get('/:id/edit', (req, res) => {
 // update
 router.put('/:id', (req, res) => {
   Item.findByIdAndUpdate(req.params.id, req.body, {
-    new: true
+    new: true,
+    currentUser: req.session.currentUser
   }, (err, updatedItem) => {
     res.redirect('/');
   });
@@ -120,7 +122,8 @@ router.put('/:id', (req, res) => {
 router.get('/:id', (req, res) => {
   Item.findById(req.params.id, (error, foundItem) => {
     res.render('show.ejs', {
-      data: foundItem
+      data: foundItem,
+      currentUser: req.session.currentUser
     });
   });
 });

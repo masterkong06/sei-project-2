@@ -4,10 +4,12 @@ const app = express();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const itemsController = require('./controllers/items.js');
+const userController = require('./controllers/users_controller.js');
+const sessionsController = require('./controllers/sessions_controller.js');
 require('dotenv').config(); // gives server access to environment variables in .env file
 const session = require('express-session');
 const bcrypt = require('bcrypt');
-const userController = require('./controllers/users_controller.js');
+
 
 
 
@@ -31,7 +33,9 @@ mongoose.connection.once('open', () => {
 });
 
 app.use(itemsController);
+app.use('/users', userController);
 
+app.use('/sessions', sessionsController);
 app.use(
   session({
     secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
@@ -40,7 +44,7 @@ app.use(
   })
 );
 
-app.use('/users', userController);
+
 
 const db = mongoose.connection;
 
