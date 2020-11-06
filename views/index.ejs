@@ -8,21 +8,22 @@
 
 <body>
     <%- include ('./partials/jumbotron.ejs') %>
+    <nav class="subheader">
+        <a href="/new"><i class="fas fa-h-square"></i>Add New Item</a>
+    </nav>
     <div class="container">
-            <nav>
-                <button><a href="/new">New Item</a></button>
-            </nav>
-            <h1>This is the Items index page</h1>
+            
+            <!-- <h1>This is the Items index page</h1> -->
         </section>
         
        <div id="card-container">
             <!--Bootstrap Code Snippet: https://hackerthemes.com/bootstrap-cheatsheet/#card-->
             <% for (let i=0; i < data.length; i++) { %>
-            <div class="card">
+            <div class="card white px-4 pb-4 pt-3-5">
                 <img class="card-img-top" src="<%=data[i].img%>" alt="Card image cap">
                 <div class="card-body">
-                    <h4 class="card-title"><%=data[i].name %></h4>
-                    <p class="card-text">Purchase Price: <%=data[i].price %></p>
+                    <h5 class="card-title"><%=data[i].name %></h5>
+                    <p class="card-text">Purchase Price: $<%=data[i].price %></p>
                     <p class="card-text desc">Description: <%=data[i].description %></p>
                     <a href="/<%=data[i].id %>" class="btn btn-primary">View <%=data[i].name %> </a>
                 </div>

@@ -15,6 +15,7 @@ body {
 .card {
     max-width: 250px;
     margin-bottom: 30px;
+    font-size: .8rem;
 }
 
 .desc {
@@ -30,6 +31,7 @@ body {
     width: 100%;
     color: rgb(255, 255, 255);
     padding-left: 50px;
+    margin: 0px;
 }
 
 .title-bg{
@@ -37,3 +39,21 @@ body {
     padding: 20px;
     display: block;
 }
+
+.subheader {
+    min-height: 60px !important;
+    display: flex;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 2em;
+    background-color: #E7E7E7 !important;
+    /* align-items: right; */
+    /* justify-content: right; */
+    color: #4f4f4f;
+    margin-bottom: 50px;
+}
+
+i {
+    margin-right: 20px;
+}
+
