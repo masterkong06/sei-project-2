@@ -7,11 +7,21 @@
 </head>
 
 <body>
+    <div class="jumbotron jumbotron-fluid">
+        <!-- <div class="container"> -->
+          <span class="title-bg">
+              <h1 class="display-3">HomePro</h1>
+              <p class="lead">Life. Inventoried.</p>
+          </span>
+        <!-- </div> -->
+      </div>
     <div class="container">
-        <nav>
-            <a href="/new">New Item</a>
-        </nav>
-        <h1>This is the Items index page</h1>
+            <nav>
+                <button><a href="/new">New Item</a></button>
+            </nav>
+            <h1>This is the Items index page</h1>
+        </section>
+        
        <div id="card-container">
             <!--Bootstrap Code Snippet: https://hackerthemes.com/bootstrap-cheatsheet/#card-->
             <% for (let i=0; i < data.length; i++) { %>

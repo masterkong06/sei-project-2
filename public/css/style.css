@@ -2,6 +2,10 @@ body {
     background-color: aqua;
 }
 
+.container {
+    width: 100%;
+}
+
 #card-container {
     display: flex;
     flex-wrap: wrap;
@@ -16,4 +20,20 @@ body {
 .desc {
     height: 100px;
     overflow: hidden;
+}
+
+.jumbotron {
+    background-image: url(../home.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    padding-left: 50px;
+}
+
+.title-bg{
+    background-color: rgb(0, 0, 0, .35);
+    padding: 20px;
+    display: block;
 }
